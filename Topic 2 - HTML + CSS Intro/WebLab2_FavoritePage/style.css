@@ -1,0 +1,88 @@
+body {
+    background-color: orange;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 20px;
+}
+
+h1 {
+    color: forestgreen;
+    text-align: center;
+    font-size: 72px;
+}
+
+h2 {
+    background-color: red;
+    text-align: center;
+}
+
+p {
+    color: blue;
+}
+
+a {
+    background-color: lightgreen;
+    text-decoration: none;
+}
+
+ul {
+    background-color: beige;
+}
+
+li {
+    color: purple;
+    font-weight: bold;
+}
+
+#food-list {
+    font-family: Arial, serif;
+    font-size: 72px;
+}
+
+#fav-movie-header {
+    border: 3px palegoldenrod dotted;
+}
+
+#fav-music-header {
+    border: 3px purple double;
+}
+
+#fav-foods-header {
+    border: 3px lime dashed;
+}
+
+.fav-section {
+    background-color: coral;
+    margin: 30px;
+    margin-top: 100px;
+    margin-bottom: 30px;
+}
+
+.page-header {
+    font-size: 25px;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: magenta;
+    border: 10px greenyellow solid;
+}
+
+table, tr, th, td {
+    border: 1px black solid;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+table {
+    width: 100%
+}
+
+th {
+    background-color: darkgreen;
+    color: beige;
+}
+
+tr:nth-child(even) {
+    background-color: lawngreen;
+}
+
+tr:nth-child(odd) {
+    background-color: palegreen;
+}
