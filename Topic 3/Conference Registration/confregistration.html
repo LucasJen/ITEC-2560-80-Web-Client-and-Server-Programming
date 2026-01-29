@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conference Registration</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>      
+    <link href="styles.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+    <div class="reg-heading">
+        <h1>Please register for the conference</h1>
+    </div>
+        <div class="col-md-6">
+            <form>
+                <label class="form-label m-2" for="name">Name</label>
+                <input class="form-control m-2" id="name" name="name" maxlength="70" placeholder="Please enter your name">
+
+                <br>
+
+                <label class="form-label m-2" for="password">Password</label>
+                <input class="form-control m-2" id="password" name="password" placeholder="Please enter a password">
+
+                <br>
+
+                <label class="form-label m-2" for="email">Email</label>
+                <input class="form-control m-2" type="email" name="email" id="email" placeholder="Please enter your email">
+
+                <div class="email-updates">
+                    <p>Would you like to recieve email updates?</p>
+
+                    <input class="form-check-input" type="radio" name="emailyesno" id="yes">
+                    <label class="form-check-label" for="emailyesno">Yes</label>
+
+                    <input class="form-check-input" type="radio" name="emailyesno" id="no">
+                    <label class="form-check-label" for="emailyesno">No</label>                     
+                    
+                </div>
+
+                <br>
+
+                <div class="form-check shirt-size">
+
+                    <p>Please select the size shirt you would like</p>
+
+                    <input class="size-check-input" type="radio" name="shirt-size" id="small">
+                    <label class="size-check-label" for="shirt-size">Small</label>
+                    
+                    <input class="size-check-input" type="radio" name="shirt-size" id="medium">
+                    <label class="size-check-label" for="shirt-size">Medium</label>  
+                    
+                    <input class="size-check-input" type="radio" name="shirt-size" id="large">
+                    <label class="size-check-label" for="shirt-size">Large</label>
+
+                </div>
+
+                <div>
+
+                    <p>Select which time slot(s) you would like to attend the conference</p>
+
+                    <input for="time-of-attendance" type="checkbox">
+                    <label name="time-of-attendance">Morning</label>
+
+
+                    <br>
+
+                    <input for="time-of-attendance" type="checkbox">    
+                    <label name="time-of-attendance">Afternoon</label>
+
+
+                </div>
+
+                <label class="form-label m-2" for="special-requests">Special requests</label> 
+                <textarea class="form-control m-2" rows="10" cols="45" name="special-requests" id="special requests" placeholder="Please inform us of any additional accomodations you may require"></textarea>
+
+                <br>
+
+                <input class="btn btn-primary" type="submit" placeholder="Submit">
+
+            </form>
+        </div>
+
+
+</body>
+</html>
