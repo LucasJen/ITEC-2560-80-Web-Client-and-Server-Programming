@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2 id="width"></h2>
+
+
+
+
+
+<script>
+
+    //function created to output the pixel width of the page
+    function displayWidth() {
+        let width = document.body.scrollWidth
+        let widthDisplayEl = document.querySelector('#width')
+        widthDisplayEl.innerHTML=`Window width=${width} pixels`
+    }
+
+    // function called to display width once page is loaded
+    displayWidth();
+
+    //calls the displayWidth function everyone a resize is observed
+    window.addEventListener('resize', displayWidth)
+
+</script> 
+</body>
+</html>

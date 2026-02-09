@@ -14,11 +14,21 @@
 <!-- Script must be below elements since elements must exists to be acted upon -->
 <script>
 
+    // Will find and return the first button in the html
     let button = document.querySelector('button')
 
-    button.addEventListener('click', function() {
+    // 'mouseover' : when the mouse hovers over the item
+    // 'click' : when the mouse left clicks on the item
+
+    function showAlert() { //Typical function, can be called like any other language
         alert('You clicked the button!')
-    })
+        button.innerHTML = 'You clicked the button!'
+        button.style.backgroundColor = 'red'
+        button.remove() // removes the button once pressed
+    }
+
+    //anonymous functions can be created inside of calls
+    button.addEventListener('click', showAlert)
 
 
 
