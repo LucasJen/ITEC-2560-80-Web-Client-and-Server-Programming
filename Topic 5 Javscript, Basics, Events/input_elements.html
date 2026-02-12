@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label for="name">Name</label>
+    <input type="text" id="name">
+
+    <button id="submit-button">Submit form</button>
+
+<script>
+    
+    // assign the submit button to the variable to be called with an event listener
+    let submitNameButton = document.querySelector('#submit-button')
+    
+    // assign the name input to the name entry box, not the value of the input yet
+    let nameInputElement = document.querySelector('#name')
+    
+    submitNameButton.addEventListener('click', function() {
+        let userName = nameInputElement.value //takes the value of the input and assigns to variable
+        if (userName.length == 0) {
+            alert('Please input your name') //outputs an alert.
+        }
+        else {
+            alert('The users name is: ' + userName)
+        }
+    })
+    
+    
+    
+
+
+
+
+
+</script>
+</body>
+</html>
