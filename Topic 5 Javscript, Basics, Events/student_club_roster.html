@@ -43,26 +43,57 @@
 
 <script>
 
-    //assign vars for each element as well as the submit button
-    let countSpanElement = document.querySelector('#student-count')
-
-    let studentCount = 0
-
-    let submitButton = document.querySelector('#add-student')
-
-    let studentNameInput = document.querySelector('#student-name')
-    
-    let studentIdInput = document.querySelector('#student-id')
-
-    let studentGPAInput = document.querySelector('#student-gpa')
+  // Variable assignments for each html element
+  let countSpanElement = document.querySelector('#student-count')
+  let studentCount = 0
+  let submitButton = document.querySelector('#add-student')
+  let studentNameInput = document.querySelector('#student-name')
+  let studentIdInput = document.querySelector('#student-id')
+  let studentGPAInput = document.querySelector('#student-gpa')
+  let studentListElement = document.querySelector('#student-list')
 
 
-    submitButton.addEventListener('click', function() {
+  countSpanElement.textContent = studentCount
 
+  // Anonymous function called within listener when the submit button is clicked
+  // The function uses conditional to check if there is anything in the input boxes
+  // if input boxes are left blank the program will tell you they need filled in
+  submitButton.addEventListener('click', function() {
+      let studentName = studentNameInput.value
+      if (!studentName) {
+          alert('Please enter student name')
+          return
+      }
+      
+      let studentId = studentIdInput.value
+      if (!studentId) {
+          alert('Please enter student ID')
+          return
+      }
+      // This condtional checks that the gpa is filled in, above zero and below 4.
+      // it will not let improper information be submitted.
+      let studentGPA = studentGPAInput.value
+      if (!studentGPA || studentGPA < 0 || studentGPA > 4) {
+          alert('Please enter a GPA between 0 and 4')
+          return
+      }
+      
+      // if the above inputs are satisfied, a new li element is created
+      // the li element is created using the provided information to fill in the list element
+      let newLine = document.createElement('li')
+      newLine.innerHTML = `${studentName}, id: ${studentId}, GPA ${studentGPA}`
+      studentListElement.appendChild(newLine)
+      
+      //the values are reset at the end so that they're not accidently reused.
+      studentNameInput.value = ''
+      studentIdInput.value = ''
+      studentGPAInput.value = ''
+      
+      //increments the student count
+      studentCount++
+      countSpanElement.textContent = studentCount
+  })
 
-
-        alert('student added')
-    })
   /* Add the following functionality to this page
 
   [Note on HTML element notation: span#student-count means the span element with id="student-count" ]
