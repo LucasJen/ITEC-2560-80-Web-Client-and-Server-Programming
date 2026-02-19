@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <p>Enter some text to add to the list</p>
+    <input id="new-text"></input>
+    <button id="add-text">Add</button>
+    <button id="clear-list">Clear</button>
+
+    <!-- Empty unordered list-->
+     <ul id="list-of-text"></ul>
+
+
+<script>
+
+    let textInput = document.querySelector('#new-text')
+    let addButton = document.querySelector('#add-text')
+    let textList = document.querySelector('#list-of-text')
+    let clearButton = document.querySelector('#clear-list')
+
+    let elementsInList = 0 //tracking items in list
+    let maxElements = 10 //max items allowed in list
+
+    //allows user to press enter key to add item to list.
+    document.addEventListener('keyup', function() {
+        if (event.keyCode == 13){
+            addButton.click()
+        }
+    })
+    addButton.addEventListener('click', function() {
+        let newText = textInput.value
+        //input validation
+        if (newText.length ==0) {
+            alert('Enter some text')
+            return
+        }
+
+        if (elementsInList >= maxElements) { //check that the max list items isn't exceeded
+            alert('no more elements can be added')
+            return
+        }
+
+        // read the text in the input
+
+        // create a new li element
+        let newListItem = document.createElement('li')
+        // the li element text should be the text from the input
+        newListItem.innerHTML = newText
+
+        //add the new li element as a child of th ul element
+        textList.appendChild(newListItem)
+        //clear input
+        textInput.value = ''
+
+        elementsInList++
+    })
+
+    //function to clear list when 'clear' button is pressed.
+    clearButton.addEventListener('click', function() {
+        textList.innerHTML = ''
+        elementsInList = 0
+    })
+
+
+</script>
+</body>
+</html>

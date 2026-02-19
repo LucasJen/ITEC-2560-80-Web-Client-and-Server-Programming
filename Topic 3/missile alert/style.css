@@ -16,9 +16,16 @@
     display: block;
     font-family: "Comic Sans MS";
     margin: 30px;
+<<<<<<< HEAD
     width: fit-content;
     padding: 10px;
     background-color: lightgrey;
     text-align: center;
+=======
+    padding: 20px;
+    background-color: lightgrey;
+    display: inline-block;
+
+>>>>>>> 2d623eb3254ac0d1cedc733b00a63c6b12dde1be
 }
 

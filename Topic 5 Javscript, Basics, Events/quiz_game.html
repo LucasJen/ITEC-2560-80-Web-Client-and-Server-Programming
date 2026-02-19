@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <p>What is the capital of Wisconsin?</p>
+
+    <button class="wrong-answer">Bayfield</button>
+    <button id="correct-answer">Madison</button>
+    <button class="wrong-answer">Milwaukee</button>
+
+    <p id="result"></p>
+
+<script>
+
+    let correctAnswerButton = document.querySelector('#correct-answer')
+
+    //default button background to be used to reset backgroun of buttons.
+    let defaultButtonColor = correctAnswerButton.style.background
+
+    let wrongAnswerButtons = document.querySelectorAll('.wrong-answer')
+
+    let result = document.querySelector('#result')
+
+    // add an event listener to both buttons
+
+    // // add click event listener to wrong answer button
+    // wrongAnswerButton.forEach(function(wrongAnswerButton){
+        // wrongAnswerButton.addEventListener('click', function(){
+        //     result.innerHTML = 'Wrong answer, try again?'
+        //     correctAnswerButton.style.background = defaultButtonColor
+        // })
+    // })
+
+    for (let x=0 ; x<wrongAnswerButtons.length; x++){
+        let wrongAnswerButton = wrongAnswerButtons[x]
+
+        // anonymous function created within listener to output message when wrong button is pressed
+        wrongAnswerButton.addEventListener('click', function(){
+            result.innerHTML = 'Wrong answer, try again?'
+            // will reset backgroun of correct answer button if wrong is pressed
+            correctAnswerButton.style.background = defaultButtonColor
+        })
+    }
+    // function to output message when correct button is pressed
+    correctAnswerButton.addEventListener('click', function() {
+        result.innerHTML = 'Correct answer!'
+        correctAnswerButton.style.background = 'lightgreen'
+    })
+
+
+</script>
+</body>
+</html>

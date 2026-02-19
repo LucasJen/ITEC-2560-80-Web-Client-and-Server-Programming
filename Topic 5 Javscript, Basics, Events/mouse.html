@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <p id="mouse-me">move mouse here</p>
+
+
+<script>
+
+    let mouseCount = 0
+    // creates variable that affects the id "mouse-me"
+    let message = document.querySelector('#mouse-me')
+
+    // single and double quotes are acceptable
+    message.addEventListener('mouseover', function(){
+        mouseCount += 1
+        if (mouseCount < 2) {
+            message.innterHTML = 'Your mouse has been here ' + mouseCount + 'time'
+        } else {
+            message.innerHTML = 'Your mouse has been here ' + mouseCount + ' times.'
+        }
+        
+    })
+
+    message.addEventListener('mouseout', function(){
+        message.innerHTML = 'Your mouse is not on this message'
+    })
+
+    //boolean values are lowercase unlike python
+
+
+</script>
+</body>
+</html>

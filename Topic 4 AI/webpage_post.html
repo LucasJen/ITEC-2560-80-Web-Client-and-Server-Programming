@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1>Blood Reserves</h1>
+
+    <label for="blood-group-abo">ABO Blood Group</label>
+    <select id="blood-group-abo">
+        <option value="A">A</option>
+        <option value="AB">AB</option>
+        <option value="B">B</option>
+        <option value="O">O</option>
+    </select>
+
+    <br> 
+
+    <label for="blood-group-rh">Rh Factor</label>
+    <select id="blood-group-rh">
+        <option value="positive">Positive</option>
+        <option value="negative">Negative</option>
+    </select>
+
+    <br>
+    
+    <button id="get-blood-units-button">Get blood units</button>
+
+    <div id="display-blood-units">
+        <p>Blood group: <span id="blood-group-display"></span></p>
+        <p>Units available: <span id="units-available"></span></p>
+    </div>
+    
+    <script>
+        let bloodGroupAboInput = document.querySelector('#blood-group-abo')
+        let bloodGroupRhInput = document.querySelector('#blood-group-rh')
+        let getBloodUnitsButton = document.querySelector('#get-blood-units-button')
+
+        let bloodGroupDisplay = document.querySelector('#blood-group-display')
+        let unitsAvailableDisplay = document.querySelector('#units-available')
+
+        getBloodUnitsButton.addEventListener('click', function() {
+            // 1. Format the group parameter (e.g., "Apositive")
+            const abo = bloodGroupAboInput.value; 
+            const rh = bloodGroupRhInput.value;   
+            const groupParam = abo + rh;
+
+            // 2. Target the specific endpoint path
+            const url = `https://blood-group-api.wl.r.appspot.com/api/blood_units_by_group?group=${groupParam}`;
+
+            // 3. Fetch and extract the specific nested value
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP Error: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Update the "Blood group" label for the UI
+                    const rhSymbol = (rh === 'positive') ? '+' : '-';
+                    bloodGroupDisplay.textContent = abo + rhSymbol;
+
+                    // 4. Navigate the dictionary: blood_availability -> units_available
+                    if (data.blood_availability && data.blood_availability.units_available !== undefined) {
+                        unitsAvailableDisplay.textContent = data.blood_availability.units_available;
+                    } else {
+                        unitsAvailableDisplay.textContent = "Data format error";
+                    }
+                })
+                .catch(error => {
+                    console.error("Fetch error:", error);
+                    unitsAvailableDisplay.textContent = "Error loading units";
+                });
+        })
+    </script>
+</body>
+</html>
