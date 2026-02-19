@@ -6,35 +6,78 @@
     <title>Document</title>
 </head>
 <body>
-    <form>
-        <label for="name">Name:</label>
-        <input id="name" name="name" type="text" maxlength="70" required>
-        <br>
-        <label for="password">Password:</label>
-        <input id="password" name="password" type="password" maxlength="70" required>
-        <br>
-        <label for="email">email:</label>
-        <input id="email" name="email" type="text" maxlength="100" required>
-        <br>
-        <label for="shirtSize">T-shirt size:</label>
-        <select name="shirtSize" id="shirtSize">
-            <option>Small</option>
-            <option>Medium</option>
-            <option>Large</option>
-            <option>X-Large</option>
-            <option>2X-Large</option>
-        </select>
+    <label for="name">Name:</label>
+    <input id="name" name="name" type="text" maxlength="70">
+    <br>
+    <label for="password">Password:</label>
+    <input id="password" name="password" type="password" maxlength="70">
+    <br>
+    <label for="email">email:</label>
+    <input id="email" name="email" type="text" maxlength="100">
+    <br>
+    <label for="shirtSize">T-shirt size:</label>
+    <select name="shirtSize" id="shirtSize">
+        <option>Small</option>
+        <option>Medium</option>
+        <option>Large</option>
+        <option>X-Large</option>
+        <option>2X-Large</option>
+    </select>
 
 
-        <p>What sessions will you attend?</p>
+    <p>What sessions will you attend?</p>
 
-        <label for="morning">Morning</label>
-        <input id="morning" type="checkbox">
-        <label for="afternoon">Afternoon</label>
-        <input id="afternoon" type="checkbox">
+    <label for="morning">Morning</label>
+    <input id="morning" type="checkbox">
+    <label for="afternoon">Afternoon</label>
+    <input id="afternoon" type="checkbox">
 
 
-        <button type="submit">Submit your registration</button>
-            </form>
+    <button id="submit-registration-button" type="submit">Submit your registration</button>
+
+<script>
+
+    let submitRegistrationButton = document.querySelector('#submit-registration-button')
+    let nameInput = document.querySelector('#name')
+    let passwordInput = document.querySelector('#password')
+    let emailInput = document.querySelector('#email')
+    let shirtSize = document.querySelector('#shirtSize')
+
+    let morningSessionCheckbox = document.querySelector('#morning')
+    let afternoonSessionCheckbox = document.querySelector('#afternoon')
+
+    submitRegistrationButton.addEventListener('click', function() {
+
+        // create and array of all errored inputs or missing inputs.\\
+
+        let errorsArray = []
+        
+        let name = nameInput.value
+        console.log(name)
+
+        if (name.length === 0) {
+            errorsArray.push('Enter your name')
+        }
+
+        // TODO checkboxes
+        // TODO radio buttons
+
+        console.log(errorsArray)
+
+        if (errorsArray.length === 0){
+            console.log('The errors array was empty')
+            alert('Form is complete')
+        } else {
+            console.log('There was something in the errors array')
+            alert('Form error')
+        }
+        
+    })
+
+
+
+
+
+</script>
 </body>
 </html>
