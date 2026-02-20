@@ -44,6 +44,13 @@ animals.forEach( function(animal) {
 })
 
 animals.forEach(function(animal) {
-    
+    console.log(animal.length) //will output the length of each element in the array
+})
+
+let animalNameLength = []
+
+animals.forEach(function(animal) {
+    let length = animal.length
+    animalNameLength.push(length) // will add to the new array the length of each animal name
 })
 

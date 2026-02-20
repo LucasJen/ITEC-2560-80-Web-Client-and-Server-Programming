@@ -68,6 +68,9 @@
     let homeownerNameInput = document.querySelector('#homeowner-name')
     let homeownerHouseNumberInput = document.querySelector('#homeowner-house-number')
     let homeownerStreetNameInput = document.querySelector('#homeowner-street-name')
+    let cityInput = document.querySelector('#city')
+    let stateInput = document.querySelector('#state')
+    let zipcodeInput = document.querySelector('#zipcode')
     let treeTypeSelect = document.querySelector('#tree-type')
 
     // TODO create a variable for city input element
@@ -82,17 +85,56 @@
         let name = homeownerNameInput.value 
         let houseNumber = homeownerHouseNumberInput.value
         let streetName = homeownerStreetNameInput.value
+        let city = cityInput.value
+        let state = stateInput.value
+        let zipcode = zipcodeInput.value
         let treeType = treeTypeSelect.value
 
+        let errors = []
         // TODO get the value from the input#city
         // TODO get the value from the input#zipcode
 
+        if (!name) {
+            errors.push('Name is required.')
+        }
+
+        if (!houseNumber) {
+            errors.push('House number is required')
+        }
+
+        if (!streetName) {
+            errors.push("Street name is required")
+        }
+
+        if (!city) {
+            errors.push("City name is required")
+        }
+
+        if (!zipcode) {
+            errors.push("Zipcode is required")
+        }
+        if (zipcode < 55001 || zipcode > 56763) {
+            errors.push("Zip code must be between 55001 and 56763.")
+        }
         // TODO Validate that all six input and select elements have been completed
         //  - check they all have a value
-
+        
         // TODO Validate the zipcode is in the range 55001 and 56763. 
         // to check that the zip code is in Minnesota.
         // Make sure your script doesn't accept non-numeric input for the zip code. 
+        if (!treeType) {
+
+            errors.push("Please select a tree type.")
+        }
+        
+        if (errors.length > 0){
+            alert(errors.join("\n"))
+            return
+        } else {
+            alert(`Order placed for ${name} at ${houseNumber} ${streetName}, ${city}, ${state} ${zipcode}. Tree type: ${treeType}.`)
+        }
+
+
 
         // Optional extra: add the class .error to any inputs with an error (and only inputs with an error)
         // to give the user visual feedback for which inputs need to be fixed or completed. 
@@ -100,7 +142,7 @@
         // which will be applied if you give the class .error to any elements on the page. 
         // Make sure you remove this class when the form is completed correctly.
 
-        let errors = []
+
         
         // If a form element has not been completed, or if the data is not valid, 
         // add an error message to the errors array. (Hint: use push to add to the end of the array)
