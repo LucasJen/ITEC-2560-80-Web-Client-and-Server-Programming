@@ -23,61 +23,99 @@
         <option>X-Large</option>
         <option>2X-Large</option>
     </select>
-
-
+    <br>
+    <label for="dateOfBirth">Date of Birth:</label>
+    <input id="dateOfBirth" name="dateOfBirth" type="date">
+    <br>
+    <label for="receiveEmailUpdates">Receive email updates?</label>
+    <input id="receiveEmailUpdates" name="receiveEmailUpdates" type="checkbox">
+    <br>
     <p>What sessions will you attend?</p>
-
     <label for="morning">Morning</label>
     <input id="morning" type="checkbox">
     <label for="afternoon">Afternoon</label>
     <input id="afternoon" type="checkbox">
-
-
-    <button id="submit-registration-button" type="submit">Submit your registration</button>
-
+    <br>
+    <label for="specialRequests">Special Requests (optional):</label>
+    <input id="specialRequests" name="specialRequests" type="text">
+    <br>
+    <button id="submit-registration-button">Submit your registration</button>
 <script>
 
     let submitRegistrationButton = document.querySelector('#submit-registration-button')
     let nameInput = document.querySelector('#name')
     let passwordInput = document.querySelector('#password')
     let emailInput = document.querySelector('#email')
-    let shirtSize = document.querySelector('#shirtSize')
-
+    let shirtSizeSelect = document.querySelector('#shirtSize')
+    let dateOfBirthInput = document.querySelector('#dateOfBirth')
+    let receiveEmailUpdatesCheckbox = document.querySelector('#receiveEmailUpdates')
     let morningSessionCheckbox = document.querySelector('#morning')
     let afternoonSessionCheckbox = document.querySelector('#afternoon')
+    let specialRequestsInput = document.querySelector('#specialRequests')
 
     submitRegistrationButton.addEventListener('click', function() {
-
-        // create and array of all errored inputs or missing inputs.\\
-
         let errorsArray = []
-        
+
         let name = nameInput.value
-        console.log(name)
+        let password = passwordInput.value
+        let email = emailInput.value
+        let shirtSize = shirtSizeSelect.value
+        let dateOfBirth = dateOfBirthInput.value
+        let receiveEmailUpdates = receiveEmailUpdatesCheckbox.checked
+        let morningChecked = morningSessionCheckbox.checked
+        let afternoonChecked = afternoonSessionCheckbox.checked
+        let specialRequests = specialRequestsInput.value
 
+        // Used to validate the above  user input
         if (name.length === 0) {
-            errorsArray.push('Enter your name')
+            errorsArray.push('Name is required.')
+        }
+        if (password.length === 0) {
+            errorsArray.push('Password is required.')
+        }
+        if (email.length === 0) {
+            errorsArray.push('Email is required.')
+        }
+        if (dateOfBirth.length === 0) {
+            errorsArray.push('Date of birth is required.')
         }
 
-        // TODO checkboxes
-        // TODO radio buttons
-
-        console.log(errorsArray)
-
-        if (errorsArray.length === 0){
-            console.log('The errors array was empty')
-            alert('Form is complete')
-        } else {
-            console.log('There was something in the errors array')
-            alert('Form error')
+        // Used to validate that at least one is checked
+        if (!morningChecked && !afternoonChecked) {
+            errorsArray.push('Please select at least one session (morning or afternoon).')
         }
-        
+
+        // will return and alert if there are errors
+        if (errorsArray.length > 0) {
+            alert(errorsArray.join('\n'))
+            return
+        }
+
+        //if no errrors then the below will run:
+
+        let sessionsAttended = []
+        if (morningChecked) {
+            sessionsAttended.push('morning')
+        }
+        if (afternoonChecked) {
+            sessionsAttended.push('afternoon')
+        }
+
+        // Build the registration object
+        let registrationObject = {
+            name: name,
+            password: password,
+            email: email,
+            tShirtSize: shirtSize,
+            dateOfBirth: dateOfBirth,
+            receiveEmailUpdates: receiveEmailUpdates,
+            sessionsAttended: sessionsAttended,
+            specialRequests: specialRequests
+        }
+
+        console.log(registrationObject)
+        alert('Registration complete!')
     })
-
-
-
-
-
 </script>
 </body>
 </html>
