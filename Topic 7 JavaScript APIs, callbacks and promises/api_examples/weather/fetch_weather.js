@@ -53,6 +53,17 @@ function displayWeatherTable(weatherJson) {
         detailForecastTableData.innerHTML = detailedForecast
         tableRow.appendChild(detailForecastTableData)
 
+        // Wind Speed information
+        // assign variable to table cell
+        let windSpeedTableData = document.createElement('td')
+        // assign variables to the json data
+        let windSpeed = forecastPeriodData.windSpeed
+        let windDirection = forecastPeriodData.windDirection
+        // concatenate variables and apply to innerHTML
+        windSpeedTableData.innerHTML = windSpeed + ' ' + windDirection
+        //append to table cell
+        tableRow.appendChild(windSpeedTableData)
+
         // Add the new row to the table
         weatherTable.appendChild(tableRow)
     })
