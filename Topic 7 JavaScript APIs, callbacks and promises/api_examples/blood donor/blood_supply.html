@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Supply</title>
+</head>
+<body>
+    
+<h1>Blood Supply Checker</h1>
+<div>
+    <label for="abo-group">ABO Blood Group</label>
+    <select id="abo-group">
+        <option>A</option>
+        <option>B</option>
+        <option>AB</option>
+        <option>O</option>
+    </select>
+</div>
+
+<div>
+    <label for="rh-group">Rh Group</label>
+    <select id="rh-group">
+        <option>Positive</option>
+        <option>Negative</option>
+    </select>
+</div>
+
+<div>
+    <button type="submit" id="submit-button">Check blood Supply</button>
+</div>
+<script>
+
+let aboGroupOption = document.querySelector('#abo-group')
+let rhGroupOption = document.querySelector('#rh-group')
+let submitButton = document.querySelector('#submit-button')
+
+
+bloodSupplyUrl = 'https://blood-group-api.wl.r.appspot.com/api/blood_units_by_group?group=Apositive'
+
+submitButton.addEventListener('click', function() {
+    let bloodType = aboGroupOption.value + rhGroupOption.value
+    alert(bloodType)
+
+})
+
+fetch(bloodSupplyUrl)
+    .then( response => { // response is the raw response date, not json yet
+        return response.json()
+    })
+    .then(
+        console.log(response)
+    )
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
