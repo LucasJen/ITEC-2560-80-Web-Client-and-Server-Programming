@@ -21,36 +21,54 @@
 <div>
     <label for="rh-group">Rh Group</label>
     <select id="rh-group">
-        <option>Positive</option>
-        <option>Negative</option>
+        <!-- assign value to allow for page translation -->
+        <option value="positive">Positive</option>
+        <option value="negative">Negative</option>
     </select>
 </div>
 
 <div>
     <button type="submit" id="submit-button">Check blood Supply</button>
 </div>
+
+<div>
+    <p id="output-box"></p>
+</div>
 <script>
 
 let aboGroupOption = document.querySelector('#abo-group')
 let rhGroupOption = document.querySelector('#rh-group')
 let submitButton = document.querySelector('#submit-button')
+let outputBox = document.querySelector('#output-box')
 
 
-bloodSupplyUrl = 'https://blood-group-api.wl.r.appspot.com/api/blood_units_by_group?group=Apositive'
+let bloodSupplyUrl = 'https://blood-group-api.wl.r.appspot.com/api/blood_units_by_group?'
+
 
 submitButton.addEventListener('click', function() {
-    let bloodType = aboGroupOption.value + rhGroupOption.value
-    alert(bloodType)
+    let bloodType = aboGroupOption.value + rhGroupOption.value;
+    let bloodTypeQuery = `group=${bloodType}`;
+    let bloodUrlWithQuery = bloodSupplyUrl + bloodTypeQuery
+    alert(bloodUrlWithQuery)
 
-})
-
-fetch(bloodSupplyUrl)
-    .then( response => { // response is the raw response date, not json yet
+    fetch(bloodUrlWithQuery)
+    .then( response => { // response is the raw response data, not json yet
         return response.json()
     })
-    .then(
-        console.log(response)
-    )
+    .then( data => {
+        console.log(data)
+        let blood_availability = data.blood_availability
+        let group_name = blood_availability.group_name;
+        let units_available = blood_availability.units_available
+        outputBox.innerHTML = `There are ${units_available} units of ${group_name} blood currently available.`
+    })
+    .catch( error => {
+        console.log(error)
+        outputBox.innerHTML = 'Sorry, could not fetch the data.'
+    })
+})
+
+
 
 
 
