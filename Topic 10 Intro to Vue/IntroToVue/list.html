@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+<div id="app">
+    
+    <h1> Task List </h1>
+
+    <h2>Enter a new task</h2>
+    <label>Please enter your todo task</label>
+    <input v-model="newTask">
+    <br>
+    <button v-on:click="addTask"> Add Task </button>
+
+    <h2>Task List</h2>
+    <ul>
+        <li v-for="task in taskList">
+            {{ task }}
+        </li>
+    </ul>
+
+</div>
+
+<script>
+
+    const {createApp, ref} = Vue
+
+    createApp({
+        setup() {
+
+            const taskList = ref([ 'Water plants', 'pay cellphone bill', 'Wash floor'])
+            const newTask = ref('')
+            
+            function addTask() {
+                // function to add new task to the task list
+                if (newTask.value){
+                    taskList.value.push(newTask.value)
+                    newTask.value = ''
+                }
+            }
+            return {
+                taskList,
+                newTask,
+                addTask
+            }
+        }
+    }).mount('#app') //mounts functions to the above div
+
+
+</script>
+</body>
+</html>
